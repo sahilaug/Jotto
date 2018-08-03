@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 /**
  * Functional component for congrats message
  * @class Congrats
  * @param {object} props- React Props
  * @returns {JSX.Element}
  */
-export default (props) => {
+const Congrats = (props) => {
     return props.success ? <div data-test="component-congrats">
         <span data-test="congrats-message">Congratulations ! You have guessed the right word</span></div> : <div data-test="component-congrats" />;
 }
+
+Congrats.propTypes = {
+    success: PropTypes.bool.isRequired,
+}
+
+export default Congrats;
