@@ -4,6 +4,7 @@ import EnzymeAdapter from 'enzyme-adapter-react-16';
 
 import { findByTestAttr } from '../test/testUtils';
 import Congrats from './Congrats'
+import checkPropTypes from 'check-prop-types';
 
 Enzyme.configure({ adapter: new EnzymeAdapter()});
 
@@ -34,3 +35,9 @@ test('renders non empty congrats message when `success` prop is true', () => {
     const component = findByTestAttr(wrapper, 'congrats-message');
     expect(component.text().length).not.toBe(0);
 });
+
+test('does not throw error with correct props', () => {
+    const expectedProps = setup({ success: false });
+    const propError = checkPropTypes(Congrats.propTypes, expectedProps, 'props', Congrats.name);
+    expect(propError).toBeUndefined();  
+})
